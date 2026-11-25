@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "partner-cleanroom"
+version = "1.0.0"
+description = "PartnerCleanRoom: Multi-Tenant Ads Partner Data Vending Clean-Room Gateway, Bidding Model PSI Drift Guard, and Partner API Diagnostics on Amazon Bedrock"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Ritwika Reddy Kancharla" }]
+dependencies = ["boto3>=1.34.0"]
