@@ -1,7 +1,7 @@
 # PartnerCleanRoom: Ads Partner Data Vending Gateway, Model Drift Guard & Bedrock Diagnostics
 
-- **Live CloudFront Application**: *Updating after CloudFront deployment*
-- **Live `/api/health` Endpoint**: *Updating after CloudFront deployment*
+- **Live CloudFront Application**: https://dwq029a62oitx.cloudfront.net
+- **Live `/api/health` Endpoint**: https://dwq029a62oitx.cloudfront.net/api/health
 - **GitHub Repository**: https://github.com/ritwikareddykancharla/ads-partner-cleanroom
 
 PartnerCleanRoom is a multi-tenant control plane for advertising agencies and partner integrations, deployed serverlessly on **Amazon CloudFront + Private S3 (OAC) + AWS Lambda (`python3.12`) + SQLite WAL + Amazon Bedrock (`us.amazon.nova-lite-v1:0`)** at `$0.00` idle infrastructure cost.
