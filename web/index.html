@@ -952,7 +952,7 @@
           <span class="section-kicker">02 · Architecture</span>
           <h2 class="section-title">Architecture</h2>
           <p class="section-desc">
-            Amazon CloudFront serves the static console from a private S3 bucket via Origin Access Control and routes <code>/api/*</code> calls to Python 3.12 on AWS Lambda. Click any component below to inspect its module, boundary rules, and measured latency.
+            Amazon CloudFront serves the static console from a private S3 bucket via Origin Access Control and routes <code>/api/*</code> calls to AWS Lambda. Click any component below to inspect its module, boundary rules, and measured latency.
           </p>
         </div>
       </div>
@@ -983,7 +983,7 @@
 
           <!-- PLANE 1: SERVERLESS AWS EDGE -->
           <path d="M 22,18 Q 610,14 1196,19 Q 1201,92 1195,164 Q 608,168 24,163 Q 19,90 22,18 Z" fill="#FAFAFA" stroke="#71717A" stroke-width="1.6" stroke-dasharray="8 6" />
-          <text x="36" y="41" class="svg-title" font-size="21" font-weight="700" fill="#4338CA">① Partner Console &amp; Serverless AWS Edge (CloudFront + Private S3 OAC + Python 3.12 Lambda)</text>
+          <text x="36" y="41" class="svg-title" font-size="21" font-weight="700" fill="#4338CA">① Partner Console &amp; Serverless AWS Edge (CloudFront + Private S3 OAC + AWS Lambda)</text>
 
           <g class="arch-node selected" data-arch-node="edge-browser" tabindex="0">
             <path d="M 38,55 Q 136,52 234,56 Q 238,96 233,138 Q 135,141 39,137 Q 35,95 38,55 Z" fill="#DBEAFE" />
@@ -1023,7 +1023,7 @@
           <g class="arch-node" data-arch-node="edge-lambda" tabindex="0">
             <path d="M 640,100 Q 775,97 910,101 Q 913,127 909,153 Q 774,156 641,152 Q 637,126 640,100 Z" fill="#FEF3C7" />
             <path class="arch-stroke-main" d="M 640,100 Q 775,97 910,101 Q 913,127 909,153 Q 774,156 641,152 Q 637,126 640,100 Z" fill="none" stroke="#18181B" stroke-width="2" />
-            <text x="775" y="123" text-anchor="middle" class="svg-title" font-size="20" font-weight="700" fill="#18181B">AWS Lambda API (Python 3.12)</text>
+            <text x="775" y="123" text-anchor="middle" class="svg-title" font-size="20" font-weight="700" fill="#18181B">AWS Lambda API</text>
             <text x="775" y="142" text-anchor="middle" class="svg-mono" font-size="9.4" fill="#92400E">partner_cleanroom/server.py</text>
           </g>
 
@@ -1032,7 +1032,7 @@
             <path d="M 1160,150 L 1160,134 L 1178,134" fill="#C7D2FE" stroke="#18181B" stroke-width="1.6" />
             <text x="950" y="66" class="svg-title" font-size="19" font-weight="700" fill="#312E81">📌 $0.00 Idle Footprint</text>
             <text x="950" y="89" class="svg-title" font-size="17" font-weight="600" fill="#18181B">• S3 + CloudFront OAC edge</text>
-            <text x="950" y="110" class="svg-title" font-size="17" font-weight="600" fill="#18181B">• On-demand Python 3.12 API</text>
+            <text x="950" y="110" class="svg-title" font-size="17" font-weight="600" fill="#18181B">• On-demand AWS Lambda API</text>
             <text x="950" y="131" class="svg-title" font-size="17" font-weight="700" fill="#4338CA">• 0.026 ms SQL policy check</text>
           </g>
 
@@ -1158,7 +1158,7 @@
           <span class="section-kicker">03 · Implementation</span>
           <h2 class="section-title">Implementation</h2>
           <p class="section-desc">
-            Five Python 3.12 modules implement clean-room SQL inspection and cohort suppression, partner model drift detection, API and webhook diagnostics with Amazon Bedrock, hash-linked SQLite auditing, and serverless HTTP routing.
+            Five backend modules implement clean-room SQL inspection and cohort suppression, partner model drift detection, API and webhook diagnostics with Amazon Bedrock, hash-linked SQLite auditing, and serverless HTTP routing.
           </p>
         </div>
         <span class="tag tag-pass">12 / 12 Unit Tests Passing</span>
@@ -1286,7 +1286,7 @@
           <span class="section-kicker">05 · Live Demo</span>
           <h2 class="section-title">Live Demo</h2>
           <p class="section-desc">
-            All four interactive tabs execute against the live Python 3.12 <code>/api/*</code> backend to enforce <code>k &gt;= 25</code> SQL redaction, test OAuth grant revocation and audit integrity, trigger PSI model drift circuit breakers, and debug Partner API errors with Amazon Bedrock.
+            All four interactive tabs execute against the live serverless <code>/api/*</code> backend to enforce <code>k &gt;= 25</code> SQL redaction, test OAuth grant revocation and audit integrity, trigger PSI model drift circuit breakers, and debug Partner API errors with Amazon Bedrock.
           </p>
         </div>
         <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
@@ -1808,7 +1808,7 @@
           plane: "Plane ① · Partner Console & Serverless Edge",
           title: "Amazon CloudFront CDN & Router",
           module: "infra/deploy_cloudfront.sh · Origin Access Control",
-          summary: "Terminates TLS at the edge, serves static assets from the private S3 web bucket, and forwards /api/* requests to the Python 3.12 AWS Lambda Function URL on the same HTTPS origin.",
+          summary: "Terminates TLS at the edge, serves static assets from the private S3 web bucket, and forwards /api/* requests to the AWS Lambda Function URL on the same HTTPS origin.",
           metric: "Single HTTPS Origin · $0.00 Idle"
         },
         "edge-s3": {
@@ -1820,10 +1820,10 @@
         },
         "edge-lambda": {
           plane: "Plane ① · Partner Console & Serverless Edge",
-          title: "AWS Lambda Python 3.12 API Origin",
+          title: "AWS Lambda API Origin",
           module: "partner_cleanroom/server.py :: lambda_handler",
           summary: "Stateless serverless entrypoint routing /api/health, /api/cleanroom/query, /api/models/evaluate, /api/partner/diagnose, /api/audit/verify, /api/benchmarks, and /api/reset.",
-          metric: "Python 3.12 · 512 MB · 30s Timeout"
+          metric: "AWS Lambda · 512 MB · 30s Timeout"
         },
         "gate-oauth": {
           plane: "Plane ② · Clean-Room Data Vending",
